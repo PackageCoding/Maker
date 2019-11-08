@@ -16,6 +16,7 @@ public class PcPicker extends Frame {
 	static private JPanel diyPanel, cpuPanel, memoryPanel, montherboardPanel, powerSupplyPanel, videoCardPanel,
 			storagePanel;
 
+	//please give me commit
 	public PcPicker() {
 		JFrame frame = new JFrame("CS3443 Group 17 - PC-PICKER");
 		diyPanel = new JPanel();
