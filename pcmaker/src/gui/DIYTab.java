@@ -1,25 +1,35 @@
 package gui;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.*;
+import java.util.Enumeration;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class DIYTab extends JPanel{
-	private JTextField totalBudget;
+public class DIYTab extends JPanel implements TotalObserver{
+	//private JTextField totalBudget;
 	private JLabel totalBudgetlabel, checkSubmittedTotalBudgetLabel;
 	private JButton calculateButtton;
 	private double totalBudgetValue = 0;
+	private Budget budget;
+	private ButtonGroup cpuGroup, cardGroup;
 	
 	public DIYTab(){
-		Budget budget = new Budget();    
-	    totalBudget = new JTextField("0",10);
-        Component CPU = new Component_CPU(this, "CPU",budget);
-        Component MotherBoard = new Component_Motherboard(this, "MotherBoard",budget);
-        Component RAM = new Component_Ram(this, "RAM",budget);
-        Component PowerSupply = new Component_PowerSupply(this, "PowerSupply",budget);
-        totalBudget.setBounds(10, 50, 200, 25);
-        this.add(totalBudget);
+		budget = new Budget(this);    
+	    //totalBudget = new JTextField("0",10);
+        Component cpuBar = new Component_CPU(this, "CPU",budget);
+        Component motherboardBar = new Component_Motherboard(this, "Motherboard",budget);
+        Component ramBar = new Component_Ram(this, "RAM",budget);
+        Component videoBar = new Component_VideoCard(this, "Video Card", budget);
+        Component psuBar = new Component_PowerSupply(this, "Power Supply",budget);
+        Component storageBar = new Component_Storage(this, "Storage",budget);
         
-        totalBudget.getDocument().addDocumentListener(new DocumentListener() {
+        //totalBudget.setBounds(10, 50, 200, 25);
+        //this.add(totalBudget);
+        
+        /*totalBudget.getDocument().addDocumentListener(new DocumentListener() {
         	public void changedUpdate(DocumentEvent e) {
         	   warn();
         	}
@@ -71,11 +81,11 @@ public class DIYTab extends JPanel{
         totalBudgetlabel = new JLabel();
         totalBudgetlabel.setText("Enter Your Total Budget :");
         totalBudgetlabel.setBounds(10, 10, 200, 50);
-        this.add(totalBudgetlabel);
+        this.add(totalBudgetlabel);*/
 
         checkSubmittedTotalBudgetLabel= new JLabel();
-        checkSubmittedTotalBudgetLabel.setText("Enter Your Total Budget :");
-        checkSubmittedTotalBudgetLabel.setBounds(10, 300, 180, 50);
+        checkSubmittedTotalBudgetLabel.setText("Total Budget: $0");
+        checkSubmittedTotalBudgetLabel.setBounds(10, 220, 180, 50);
         this.add(checkSubmittedTotalBudgetLabel);
         
         
@@ -85,12 +95,68 @@ public class DIYTab extends JPanel{
         calculateButtton.addActionListener(new ActionListener() {
         	@Override
 			public void actionPerformed(ActionEvent arg0) {
-        		totalBudgetValue = Double.valueOf(totalBudget.getText());
-        		checkSubmittedTotalBudgetLabel.setText("You have enter $"+String.valueOf(totalBudgetValue));				
+        		budget.setCPUPreference(getSelectedButtonText(cpuGroup));
+        		budget.setCardPreference(getSelectedButtonText(cardGroup));
+        		budget.showTotal();
 			}          
 	      });
+        
+        
+        JLabel cpuBrand = new JLabel("CPU Brand Preference");
+        cpuBrand.setBounds(10, 270, 180, 50);
+        this.add(cpuBrand);
+        JRadioButton intelCPU = new JRadioButton("Intel", false);
+        JRadioButton amdCPU = new JRadioButton("AMD", false);
+        JRadioButton npCPU = new JRadioButton("No Preference", true);
+        intelCPU.setBounds(10, 300, 180, 50);
+        amdCPU.setBounds(10, 330, 180, 50);
+        npCPU.setBounds(10, 360, 180, 50);
+        this.add(intelCPU);
+        this.add(amdCPU);
+        this.add(npCPU);
+        cpuGroup = new ButtonGroup();
+        cpuGroup.add(intelCPU);
+        cpuGroup.add(amdCPU);
+        cpuGroup.add(npCPU);
+        
+        
+        JLabel videoCardBrand = new JLabel("Video Card Brand Preference");
+        videoCardBrand.setBounds(200, 270, 180, 50);
+        this.add(videoCardBrand);
+        JRadioButton nvidiaCard = new JRadioButton("NVidia", false);
+        JRadioButton amdCard = new JRadioButton("AMD", false);
+        JRadioButton npCard = new JRadioButton("No Preference", true);
+        nvidiaCard.setBounds(200, 300, 180, 50);
+        amdCard.setBounds(200, 330, 180, 50);
+        npCard.setBounds(200, 360, 180, 50);
+        this.add(nvidiaCard);
+        this.add(amdCard);
+        this.add(npCard);
+        cardGroup = new ButtonGroup();
+        cardGroup.add(nvidiaCard);
+        cardGroup.add(amdCard);
+        cardGroup.add(npCard);
+        
 
         
         this.setLayout(null);
 	}
+	
+	public void updateTotal() {
+		checkSubmittedTotalBudgetLabel.setText("Total Budget: $" + budget.getTotal());
+	}
+	
+
+	public String getSelectedButtonText(ButtonGroup buttonGroup) {
+	    for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+	        AbstractButton button = buttons.nextElement();
+
+	        if (button.isSelected()) {
+	            return button.getText();
+	        }
+	    }
+
+	    return null;
+	}
+	
 }

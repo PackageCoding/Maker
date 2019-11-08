@@ -15,7 +15,6 @@ import javax.swing.table.TableColumn;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import backend.CPU;
-import backend.PowerSupply;
 import backend.Controller;
 
 public class ListTab extends JPanel{

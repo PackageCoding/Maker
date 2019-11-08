@@ -15,15 +15,13 @@ import backend.VideoCardController;
 public class PcPicker extends Frame {
 	static private JPanel diyPanel, cpuPanel, memoryPanel, montherboardPanel, powerSupplyPanel, videoCardPanel,
 			storagePanel;
-//xd
+
 	public PcPicker() {
-		Budget budget = new Budget();
 		JFrame frame = new JFrame("CS3443 Group 17 - PC-PICKER");
 		diyPanel = new JPanel();
 		cpuPanel = new JPanel();
 		memoryPanel = new JPanel();
 		montherboardPanel = new JPanel();
-		powerSupplyPanel = new JPanel();
 		storagePanel = new JPanel();
 		videoCardPanel = new JPanel();
 		frame.setSize(800, 500); // width, height
@@ -36,7 +34,7 @@ public class PcPicker extends Frame {
 	public static void main(String[] args) throws IOException{
 		FileInputStream file = null;
 		try {
-			file = new FileInputStream(new File("C:\\Users\\bellamy\\git2\\Maker\\pcmaker\\Components.xlsx"));
+			file = new FileInputStream(new File("Components.xlsx"));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			//cpuController.searchById(1);
 

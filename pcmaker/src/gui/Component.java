@@ -7,14 +7,19 @@ public abstract class Component {
 	protected JLabel componentTitle;
 	protected JScrollBar componentBar;
 	protected JLabel componentBarLabel;
-	private static int yValue = 100;
+	private static int yValue = 20;
 	public Component(JPanel panel,String ComponentTitle,Budget budget){
+		
 		this.componentTitle =new JLabel(""+ComponentTitle);
 		this.componentTitle.setBounds(10,yValue,100,20);
 		panel.add(this.componentTitle);
+		
 		componentBar = new JScrollBar(JScrollBar.HORIZONTAL,0,0,0,0);
 		componentBar.setBounds(100,yValue,200,20);
 		componentBar.setBlockIncrement(10);
+		componentBar.setValue(0);
+		componentBar.setMaximum(35000);
+		
 		componentBar.setUI(new BasicScrollBarUI()
 	    {   
 			
@@ -41,8 +46,8 @@ public abstract class Component {
                 g.translate(r.x, r.y);                           
 
                 g.setColor(thumbDarkShadowColor);        
-                //g.fillRect(0, 0, r.width-1, r.height-1);
-                g.fillOval(0, 6, 8, 8);
+                g.fillRect(0, 0, r.width, r.height-1);
+                //g.fillOval(0, 6, 8, 8);
                 
                 g.translate(-r.x, -r.y);
 
@@ -68,6 +73,7 @@ public abstract class Component {
 	}
 	
 	public abstract void barControlListener(Budget budget);
+	
 	
 	public void BarSetValue(int value) {
 		componentBar.setValue(value);
