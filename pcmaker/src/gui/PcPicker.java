@@ -36,7 +36,7 @@ public class PcPicker extends Frame {
 	public static void main(String[] args) throws IOException{
 		FileInputStream file = null;
 		try {
-			file = new FileInputStream(new File("C:\\Users\\bellamy\\Desktop\\Pc-Picker\\poi\\poi\\Components.xlsx"));
+			file = new FileInputStream(new File("C:\\Users\\bellamy\\git\\Maker\\pcmaker\\Components.xlsx"));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			//cpuController.searchById(1);
 
