@@ -115,4 +115,34 @@ public class MotherboardController extends Controller {
 	public String[][] getTableData() {
 		return tableData;
 	}
+
+	public Motherboard gerRequired(String CPUbrand,int coreCount,int price) {
+		getSortedData("Price","Descending");
+		for(int rowNum=0; rowNum<motherboardList.size(); rowNum++) {
+			/*if (Integer.parseInt(tableData[rowNum][6])<=price) {
+				if (CPUbrand =="No Preference")
+					return searchById(Integer.parseInt(tableData[rowNum][7]));
+				else if (CPUbrand =="Intel") {
+					if (coreCount<=4 && tableData[rowNum][1]=="LGA1151")
+						return searchById(Integer.parseInt(tableData[rowNum][7]));
+					else if (coreCount>=6 && tableData[rowNum][1]=="LGA2066")
+						return searchById(Integer.parseInt(tableData[rowNum][7]));
+				}
+				else if (CPUbrand =="AMD" && tableData[rowNum][1]=="AM4")
+					return searchById(Integer.parseInt(tableData[rowNum][7]));
+			}*/
+			
+			if (CPUbrand =="No Preference" && Integer.parseInt(tableData[rowNum][6])<=price) {
+				return searchById(Integer.parseInt(tableData[rowNum][7]));
+			}
+			else if (CPUbrand =="Intel" && coreCount<=4 && tableData[rowNum][1]=="LGA1151" && )
+				return searchById(Integer.parseInt(tableData[rowNum][7]));
+			else if (CPUbrand =="Intel" && coreCount>=6 && tableData[rowNum][1]=="LGA2066" && Integer.parseInt(tableData[rowNum][6])<=price)
+				return searchById(Integer.parseInt(tableData[rowNum][7]));
+			else if (CPUbrand =="AMD" && coreCount>=6 && tableData[rowNum][1]=="AM4" && Integer.parseInt(tableData[rowNum][6])<=price)
+				return searchById(Integer.parseInt(tableData[rowNum][7]));
+		}
+		return null;
+		
+	}
 }

@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CPUController extends Controller{
-	private ArrayList<CPU> cpuList = new ArrayList<>();
+	private static ArrayList<CPU> cpuList = new ArrayList<>();
 	
 	private String[] fieldTitle = new String[9];
 	private String[][] tableData;
@@ -48,7 +48,7 @@ public class CPUController extends Controller{
 		}
 	}
 
-	public CPU searchById(int id) {
+	public static CPU searchById(int id) {
 		for (CPU cpu : cpuList)
 			if (cpu.getId() == id) {
 				System.out.println(cpu.toString());
@@ -118,5 +118,17 @@ public class CPUController extends Controller{
 		}
 		
 		return tableData;
+	}
+	
+	public CPU getRequired(String CPUbrand,int price) {
+		getSortedData("Price","Descending");
+		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
+			if (CPUbrand =="No Preference" && Integer.parseInt(tableData[rowNum][7])<=price) {
+				return searchById(Integer.parseInt(tableData[rowNum][8]));
+			}
+			else if (Integer.parseInt(tableData[rowNum][7])<=price && tableData[rowNum][0].charAt(0)==CPUbrand.charAt(0))
+				return searchById(Integer.parseInt(tableData[rowNum][8]));
+		}
+		return null;
 	}
 }

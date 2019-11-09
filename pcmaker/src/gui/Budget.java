@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 public class Budget {
 	private int total, cpuPrice, mbPrice, ramPrice, psuPrice, videoCardPrice, storagePrice;
-	private Boolean preferAmdCPU, preferAmdCard;
+	private String preferCPU, preferVideoCard;
 	private TotalObserver observer;
 	
 	/*public boolean reachTotal(int newValue) {
@@ -25,8 +25,8 @@ public class Budget {
 	public Budget(TotalObserver observer) {
 		this.observer = observer;
 		resetComponentToZero();
-		preferAmdCPU = null;
-		preferAmdCard = null;
+		preferCPU = "Null";
+		preferVideoCard = "Null";
 	}
 	
 	
@@ -51,8 +51,8 @@ public class Budget {
 		System.out.println(videoCardPrice);
 		System.out.println(psuPrice);
 		System.out.println(storagePrice);
-		System.out.println(preferAmdCPU);
-		System.out.println(preferAmdCard);
+		System.out.println(preferCPU);
+		System.out.println(preferVideoCard);
 		System.out.println("------------------");
 	}
 	
@@ -120,30 +120,19 @@ public class Budget {
 	}
 	
 	public void setCPUPreference(String brand) {
-		switch(brand) {
-		case "Intel":
-			preferAmdCPU = false;
-			break;
-		case "AMD":
-			preferAmdCPU = true;
-			break;
-		default:
-			preferAmdCPU = null;
-		}
+		preferCPU = brand;
+	}
+	
+	public String getCPUPreference() {
+		return preferCPU;
 	}
 	
 	public void setCardPreference(String brand) {
-		switch(brand) {
-		case "NVidia":
-			preferAmdCard = false;
-			break;
-		case "AMD":
-			preferAmdCard = true;
-			break;
-		default:
-			preferAmdCard = null;
-		}
+		preferVideoCard = brand;
 	}
 	
-	
+	public String getCardPreference() {
+		return preferVideoCard;
+	}
+
 }

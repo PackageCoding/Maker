@@ -11,15 +11,20 @@ public class Main {
 		FileInputStream file = null;
 
 		try {
-			file = new FileInputStream(new File("C:\\Users\\bellamy\\git\\Maker\\pcmaker\\Components.xlsx"));
+			file = new FileInputStream(new File("C:\\Users\\tssiu5\\Desktop\\CS3343\\Previous_Project_Demo\\Maker\\pcmaker\\Components.xlsx"));
 			// file = new FileInputStream(new
 			// File("H:\\eclipse-workplace\\poi-20191011T091221Z-001\\poi\\poi\\Components.xlsx"));
 			//file = new FileInputStream(new File("C:\\Users\\hp\\eclipse-workspace\\poi\\poi\\Components.xlsx"));
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			CPUController cpuController = new CPUController(workbook);
 			//CPUCoolerController cpuCoolerController = new CPUCoolerController(workbook);
-			//MotherboardController motherboardController = new MotherboardController(workbook);
+			MotherboardController motherboardController = new MotherboardController(workbook);
 			//cpuController.printList();
+			cpuController.getSortedData("Price","Descending");
+			cpuController.getRequired("Intel", 1000);
+			motherboardController.gerRequired("Intel",4,10000);
+			motherboardController.gerRequired("No Preference",4,10000);
+			motherboardController.gerRequired("AMD",4,10000);
 			//cpuController.printSortedList("Name", "ascending");
 			//cpuController.printSortedList("Core Count", "ascending");
 			//cpuController.searchById(1);
