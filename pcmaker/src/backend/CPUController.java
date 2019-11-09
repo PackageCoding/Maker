@@ -32,7 +32,7 @@ public class CPUController extends Controller{
 				cpuList.add(cpu);
 			}
 		}
-		System.out.println(cpuList.size());
+		//System.out.println(cpuList.size());
 		
 		tableData = new String[cpuList.size()][fieldTitle.length];
 		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
@@ -138,4 +138,5 @@ public class CPUController extends Controller{
 		}
 		return null;
 	}
+	
 }

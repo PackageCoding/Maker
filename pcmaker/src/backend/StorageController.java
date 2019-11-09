@@ -7,7 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class StorageController extends Controller{
-	private ArrayList<Storage> storageList = new ArrayList<>();
+	private static ArrayList<Storage> storageList = new ArrayList<>();
 
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
@@ -45,7 +45,7 @@ public class StorageController extends Controller{
 		}
 	}
 
-	public Storage searchById(int id) {
+	public static Storage searchById(int id) {
 		for (Storage storage : storageList)
 			if (storage.getId() == id) {
 				System.out.println(storage.toString());
@@ -64,7 +64,7 @@ public class StorageController extends Controller{
 
 
 	
-	public String[][] getSortedData(String field, String order) {
+	public static ArrayList<Storage> getSortedList(String field, String order) {
 		StorageSorter storageSorter = new StorageSorter(storageList);
 		boolean ascending = true;
 		ArrayList<Storage> sortedStorage = new ArrayList<>();
@@ -100,7 +100,11 @@ public class StorageController extends Controller{
 				System.out.println("No such field or order!");
 				break;
 		}
-		
+		return sortedStorage;
+	}
+	
+	public String[][] getSortedData(String field, String order){
+		ArrayList<Storage> sortedStorage = getSortedList(field, order);
 		for(int rowNum=0; rowNum<storageList.size(); rowNum++) {
 			tableData[rowNum][0] = sortedStorage.get(rowNum).getName();
 			tableData[rowNum][1] = sortedStorage.get(rowNum).getCapacity();
@@ -112,6 +116,17 @@ public class StorageController extends Controller{
 			tableData[rowNum][7] = Integer.toString(sortedStorage.get(rowNum).getId());
 		}
 		return tableData;
+	}
+	
+	public static Storage gerRequired(int price) {
+		ArrayList<Storage> sortedStorage = getSortedList("Price","Descending");
+		for(int rowNum=0; rowNum<sortedStorage.size(); rowNum++) {
+			if (sortedStorage.get(rowNum).getPrice()<=price) {
+				return searchById(sortedStorage.get(rowNum).getId());
+			}
+		}
+		return null;
+		
 	}
 
 }

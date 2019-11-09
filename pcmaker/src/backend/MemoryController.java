@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MemoryController extends Controller{
-	private ArrayList<Memory> memoryList = new ArrayList<>();
+	private static ArrayList<Memory> memoryList = new ArrayList<>();
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
 	
@@ -32,8 +32,7 @@ public class MemoryController extends Controller{
 				memoryList.add(memory);
 			}
 		}
-		
-		
+
 		tableData = new String[memoryList.size()][fieldTitle.length];
 		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {
 			tableData[rowNum][0] = memoryList.get(rowNum).getName();
@@ -47,7 +46,7 @@ public class MemoryController extends Controller{
 		}
 	}
 
-	public Memory searchById(int id) {
+	public static Memory searchById(int id) {
 		for (Memory memory : memoryList)
 			if (memory.getId() == id) {
 				System.out.println(memory.toString());
@@ -56,8 +55,7 @@ public class MemoryController extends Controller{
 		return null;
 	}
 
-	@Override
-	public String[][] getSortedData(String field, String order) {
+	public static ArrayList<Memory> getSortedList(String field, String order) {
 		MemorySorter memorySorter = new MemorySorter(memoryList);
 		boolean ascending = true;
 		ArrayList<Memory> sortedMemory = new ArrayList<>();
@@ -93,7 +91,11 @@ public class MemoryController extends Controller{
 			System.out.println("No such field or order!");
 			break;
 		}
-		
+		return sortedMemory;
+	}
+	
+	public String[][] getSortedData(String field, String order){
+		ArrayList<Memory> sortedMemory = getSortedList(field, order);
 		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {
 			tableData[rowNum][0] = sortedMemory.get(rowNum).getName();
 			tableData[rowNum][1] = sortedMemory.get(rowNum).getSpeed();
@@ -104,7 +106,7 @@ public class MemoryController extends Controller{
 			tableData[rowNum][6] = Integer.toString(sortedMemory.get(rowNum).getPrice());
 			tableData[rowNum][7] = Integer.toString(sortedMemory.get(rowNum).getId());
 		}
-		
+
 		return tableData;
 	}
 
@@ -116,6 +118,17 @@ public class MemoryController extends Controller{
 	@Override
 	public String[][] getTableData() {
 		return tableData;
+	}
+	
+	public static Memory gerRequired(int price) {
+		ArrayList<Memory> sortedMemory = getSortedList("Price","Descending");
+		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {
+			if (sortedMemory.get(rowNum).getPrice()<=price) {
+				return searchById(sortedMemory.get(rowNum).getId());
+			}
+		}
+		return null;
+		
 	}
 
 }

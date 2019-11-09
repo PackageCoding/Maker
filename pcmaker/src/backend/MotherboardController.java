@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MotherboardController extends Controller {
-	private ArrayList<Motherboard> motherboardList = new ArrayList<>();
+	private static ArrayList<Motherboard> motherboardList = new ArrayList<>();
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
 
@@ -46,7 +46,7 @@ public class MotherboardController extends Controller {
 		}
 	}
 
-	public Motherboard searchById(int id) {
+	public static Motherboard searchById(int id) {
 		for (Motherboard motherboard : motherboardList)
 			if (motherboard.getId() == id) {
 				System.out.println(motherboard.toString());
@@ -55,8 +55,7 @@ public class MotherboardController extends Controller {
 		return null;
 	}
 
-	@Override
-	public String[][] getSortedData(String field, String order) {
+	public static ArrayList<Motherboard> getSortedList(String field, String order) {
 		MotherboardSorter motherboardSorter = new MotherboardSorter(motherboardList);
 		boolean ascending = true;
 		ArrayList<Motherboard> sortedMotherboard = new ArrayList<>();
@@ -93,6 +92,12 @@ public class MotherboardController extends Controller {
 				break;
 		}
 
+		return sortedMotherboard;
+	}
+	
+	public String[][] getSortedData(String field, String order){
+		ArrayList<Motherboard> sortedMotherboard = getSortedList(field, order);
+		
 		for (int rowNum = 0; rowNum < motherboardList.size(); rowNum++) {
 			tableData[rowNum][0] = sortedMotherboard.get(rowNum).getName();
 			tableData[rowNum][1] = sortedMotherboard.get(rowNum).getSocket_cpu();
@@ -103,6 +108,7 @@ public class MotherboardController extends Controller {
 			tableData[rowNum][6] = Integer.toString(sortedMotherboard.get(rowNum).getPrice());
 			tableData[rowNum][7] = Integer.toString(sortedMotherboard.get(rowNum).getId());
 		}
+		
 		return tableData;
 	}
 
@@ -116,33 +122,24 @@ public class MotherboardController extends Controller {
 		return tableData;
 	}
 
-	public Motherboard gerRequired(String CPUbrand,int coreCount,int price) {
-		getSortedData("Price","Descending");
-		for(int rowNum=0; rowNum<motherboardList.size(); rowNum++) {
-			/*if (Integer.parseInt(tableData[rowNum][6])<=price) {
+	public static Motherboard getRequired(String CPUbrand,int coreCount,int price) {
+		ArrayList<Motherboard> sortedMotherboard = getSortedList("Price","Descending");
+		for(int rowNum=0; rowNum<sortedMotherboard.size(); rowNum++) {
+			if (sortedMotherboard.get(rowNum).getPrice()<=price) {
 				if (CPUbrand =="No Preference")
-					return searchById(Integer.parseInt(tableData[rowNum][7]));
+					return searchById(sortedMotherboard.get(rowNum).getId());
 				else if (CPUbrand =="Intel") {
-					if (coreCount<=4 && tableData[rowNum][1]=="LGA1151")
-						return searchById(Integer.parseInt(tableData[rowNum][7]));
-					else if (coreCount>=6 && tableData[rowNum][1]=="LGA2066")
-						return searchById(Integer.parseInt(tableData[rowNum][7]));
+					if (coreCount<=4 && sortedMotherboard.get(rowNum).getSocket_cpu().contentEquals("LGA1151"))
+						return searchById(sortedMotherboard.get(rowNum).getId());
+					else if (coreCount>=6 && sortedMotherboard.get(rowNum).getSocket_cpu().contentEquals("LGA2066"))
+						return searchById(sortedMotherboard.get(rowNum).getId());
 				}
-				else if (CPUbrand =="AMD" && tableData[rowNum][1]=="AM4")
-					return searchById(Integer.parseInt(tableData[rowNum][7]));
-			}*/
-			
-			if (CPUbrand =="No Preference" && Integer.parseInt(tableData[rowNum][6])<=price) {
-				return searchById(Integer.parseInt(tableData[rowNum][7]));
+				else if (CPUbrand =="AMD" && sortedMotherboard.get(rowNum).getSocket_cpu().contentEquals("AM4"))
+					return searchById(sortedMotherboard.get(rowNum).getId());
 			}
-			else if (CPUbrand =="Intel" && coreCount<=4 && tableData[rowNum][1]=="LGA1151" && )
-				return searchById(Integer.parseInt(tableData[rowNum][7]));
-			else if (CPUbrand =="Intel" && coreCount>=6 && tableData[rowNum][1]=="LGA2066" && Integer.parseInt(tableData[rowNum][6])<=price)
-				return searchById(Integer.parseInt(tableData[rowNum][7]));
-			else if (CPUbrand =="AMD" && coreCount>=6 && tableData[rowNum][1]=="AM4" && Integer.parseInt(tableData[rowNum][6])<=price)
-				return searchById(Integer.parseInt(tableData[rowNum][7]));
+			
 		}
 		return null;
-		
 	}
+
 }
