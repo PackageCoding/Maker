@@ -48,7 +48,7 @@ public class DIYTab extends JPanel implements TotalObserver{
     	this.add(specListTitle);
     	
     	JLabel specListOutput = new JLabel();
-    	specListOutput.setText("<html>Hello World!<br/>blahblahblah<br/></html>");
+    	specListOutput.setText("<html>      Welcome to CS3343 - Group 7 !<br/><br/><br/>      Project Name: PC-Picker<br/></html>");
     	specListOutput.setBounds(420, 20, 500, 300);
     	this.add(specListOutput);
 
@@ -70,9 +70,9 @@ public class DIYTab extends JPanel implements TotalObserver{
         		specList = new SpecList(budget);
         		
         		if(specList.findList()) {
-        			String listText = "<html>"+specList.getCpuMessage()+"<br/>\"<br/>"+specList.getMotherboardMessage()+"<br/>\"<br/>"+
-        								specList.getMemoryMessage()+"<br/>\"<br/>"+specList.getVideoCardMessage()+"<br/>\"<br/>"+specList.getPowerSupplyMessage()+"<br/>\"<br/>"+
-        								specList.getStorageMessage()+"<br/>\"<br/>"+specList.getTotalMessage()+"</html>";
+        			String listText = "<html>"+specList.getCpuMessage()+"<br/><br/>"+specList.getMotherboardMessage()+"<br/><br/>"+
+        								specList.getMemoryMessage()+"<br/><br/>"+specList.getVideoCardMessage()+"<br/><br/>"+specList.getPowerSupplyMessage()+"<br/><br/>"+
+        								specList.getStorageMessage()+"<br/><br/>"+specList.getTotalMessage()+"</html>";
         			specListOutput.setText(listText);
         		}
         		else {

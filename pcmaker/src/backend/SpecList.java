@@ -43,7 +43,7 @@ public class SpecList {
 		}
 		
 		if (montherboard==null || memory==null || storage==null || videoCard==null) {
-			System.out.println("No result found!");
+			System.out.println("No result found !");
 			return false;
 		}
 		else {
