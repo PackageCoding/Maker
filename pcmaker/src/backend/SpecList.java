@@ -20,23 +20,6 @@ public class SpecList {
 		this.budget = budget;
 	}
 
-	public static void main(String[] args) {
-		//System.out.println("Hello, here is your specification list with CPU Brand Preference: "+ budget.getCPUPreference() + ", Video Card Brand Preference: "+ budget.getCardPreference());
-		
-	}
-
-	public String show() {
-		//System.out.printf("Hello, here is your specification list with CPU Brand Preference: %s, Video Card Brand Preference: %s",budget.getCPUPreference(),budget.getCardPreference());
-		//if (budget!=null)
-		return "Hello, here is your specification list with follwoing limitation: \n1: CPU Brand Preference: "+ budget.getCPUPreference() + "\n2: Video Card Brand Preference: "+ budget.getCardPreference() + "\n3. Total cost: " + budget.getTotal();
-		//else
-			//return "The required list cannot be found";
-	}
-	
-	public void update() {
-		
-	}
-
 	public void print() {
 		this.cpu = CPUController.getRequired(budget.getCPUPreference(),budget.getCpuPrice());
 		if (cpu==null) {
