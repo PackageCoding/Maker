@@ -39,7 +39,7 @@ public class PcPicker extends Frame {
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			//cpuController.searchById(1);
 
-			JFrame frame = new JFrame("CS3443 Group 17 - PC-PICKER");
+			JFrame frame = new JFrame("CS3443 Group 7 - PC-PICKER");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			JTabbedPane tabbedPane = new JTabbedPane();
