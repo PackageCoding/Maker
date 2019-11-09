@@ -44,7 +44,7 @@ public class DIYTab extends JPanel implements TotalObserver{
 
         JLabel specListTitle = new JLabel();
     	specListTitle.setText("The following specification list is fulfilled your requirement:");
-    	specListTitle.setBounds(400, 0, 500, 60);
+    	specListTitle.setBounds(420, 0, 500, 60);
     	this.add(specListTitle);
     	
     	JLabel specListOutput = new JLabel();
