@@ -60,8 +60,9 @@ public class PcPicker extends Frame {
 			tabbedPane.addTab("Storage List", storagePanel);
 			tabbedPane.addTab("Video Card List", videoCardPanel);
 
-			frame.setSize(1000, 550);
+			frame.setSize(1050, 550);
 			frame.setVisible(true);
+			frame.setResizable(false);
 
 		} catch (IOException e) {
 			e.printStackTrace();

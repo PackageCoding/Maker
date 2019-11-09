@@ -30,77 +30,27 @@ public class DIYTab extends JPanel implements TotalObserver{
 	
 	public DIYTab() throws IOException{
 		budget = new Budget(this);
-	    //totalBudget = new JTextField("0",10);
+
         Component cpuBar = new Component_CPU(this, "CPU",budget);
         Component motherboardBar = new Component_Motherboard(this, "Motherboard",budget);
         Component ramBar = new Component_Ram(this, "RAM",budget);
         Component videoBar = new Component_VideoCard(this, "Video Card", budget);
         Component psuBar = new Component_PowerSupply(this, "Power Supply",budget);
         Component storageBar = new Component_Storage(this, "Storage",budget);
-        //totalBudget.setBounds(10, 50, 200, 25);
-        //this.add(totalBudget);
-        
+  
         FileInputStream file = new FileInputStream(new File("Components.xlsx"));
 		XSSFWorkbook workbook = new XSSFWorkbook(file);
 		//CPUController cpuController = new CPUController(workbook);
 
-        JLabel specListOutput = new JLabel();
-    	specListOutput.setText("The following specification list is fulfilled your requirement:");
-    	specListOutput.setBounds(400, 0, 500, 60);
+        JLabel specListTitle = new JLabel();
+    	specListTitle.setText("The following specification list is fulfilled your requirement:");
+    	specListTitle.setBounds(400, 0, 500, 60);
+    	this.add(specListTitle);
+    	
+    	JLabel specListOutput = new JLabel();
+    	specListOutput.setText("<html>Hello World!<br/>blahblahblah<br/></html>");
+    	specListOutput.setBounds(420, 20, 500, 300);
     	this.add(specListOutput);
-        /*totalBudget.getDocument().addDocumentListener(new DocumentListener() {
-        	public void changedUpdate(DocumentEvent e) {
-        	   warn();
-        	}
-        	public void removeUpdate(DocumentEvent e) {
-        	   warn();
-        	}
-        	public void insertUpdate(DocumentEvent e) {
-        	   warn();
-        	}
-        	public void warn() {
-        		
-        		try {
-        			int total = Integer.parseInt(totalBudget.getText());
-   
-        		    if (totalBudget.getText().charAt(0)=='0'){
-        		    	budget.setTotal(0);
-        		    	checkSubmittedTotalBudgetLabel.setText("Enter A positive integer!");	
-        		    	CPU.BarSetMax(0);
-        		    	MotherBoard.BarSetMax(0);
-        		    	RAM.BarSetMax(0);
-        		    	PowerSupply.BarSetMax(0);
-        		    } else {
-        		    	budget.setTotal(total);
-        		    	checkSubmittedTotalBudgetLabel.setText("You have enter $" + total);
-        		    	CPU.BarSetMax(total);
-        		    	MotherBoard.BarSetMax(total);
-        		    	RAM.BarSetMax(total);
-        		    	PowerSupply.BarSetMax(total);
-        		    }
-    
-        	    }catch(Exception e) {
-        	    	budget.setTotal(0);
-        	    	checkSubmittedTotalBudgetLabel.setText("Enter A positive integer!");	
-        	    	CPU.BarSetMax(0);
-    		    	MotherBoard.BarSetMax(0);
-    		    	RAM.BarSetMax(0);
-    		    	PowerSupply.BarSetMax(0);
-        	    }finally {
-        	    	CPU.BarSetValue(0);
-        	    	MotherBoard.BarSetValue(0);
-        	    	RAM.BarSetValue(0);
-        	    	PowerSupply.BarSetValue(0);
-        		    budget.resetComponentToZero();
-        		    
-        	    }
-        	}	  
-        });
-
-        totalBudgetlabel = new JLabel();
-        totalBudgetlabel.setText("Enter Your Total Budget :");
-        totalBudgetlabel.setBounds(10, 10, 200, 50);
-        this.add(totalBudgetlabel);*/
 
         checkSubmittedTotalBudgetLabel= new JLabel();
         checkSubmittedTotalBudgetLabel.setText("Total Budget: $ 0");
@@ -118,7 +68,16 @@ public class DIYTab extends JPanel implements TotalObserver{
         		budget.setCardPreference(getSelectedButtonText(cardGroup));
         		budget.showTotal();
         		specList = new SpecList(budget);
-        		specList.print();
+        		
+        		if(specList.findList()) {
+        			String listText = "<html>"+specList.getCpuMessage()+"<br/>\"<br/>"+specList.getMotherboardMessage()+"<br/>\"<br/>"+
+        								specList.getMemoryMessage()+"<br/>\"<br/>"+specList.getVideoCardMessage()+"<br/>\"<br/>"+specList.getPowerSupplyMessage()+"<br/>\"<br/>"+
+        								specList.getStorageMessage()+"<br/>\"<br/>"+specList.getTotalMessage()+"</html>";
+        			specListOutput.setText(listText);
+        		}
+        		else {
+        			specListOutput.setText("No result found!");
+        		}
 			}          
 	      });
         

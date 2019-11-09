@@ -73,8 +73,8 @@ public class CPUController extends Controller{
 		if (order.equals("Descending"))
 			ascending = false;
 		
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted CPU by " + field + " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted CPU by " + field + " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedCPU = cpuSorter.getSortedByName(ascending);

@@ -71,8 +71,8 @@ public class PowerSupplyController extends Controller {
 		if (order.equals("Descending"))
 			ascending = false;
 
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted PowerSupply by " + field + " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted PowerSupply by " + field + " " + order + ":");
 		switch (field) {
 		case "Name":
 			sortedPowerSupply = powerSupplySorter.getSortedByName(ascending);

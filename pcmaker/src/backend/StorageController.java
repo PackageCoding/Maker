@@ -72,8 +72,8 @@ public class StorageController extends Controller{
 		if (order.equals("Descending"))
 			ascending = false;
 		
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted Storage by " + field+ " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted Storage by " + field+ " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedStorage = storageSorter.getSortedByName(ascending);

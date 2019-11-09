@@ -74,8 +74,8 @@ public class VideoCardController  extends Controller{
 		
 		if (order.equals("Descending"))
 			ascending = false;
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted VideoCard by " + field+ " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted VideoCard by " + field+ " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedVideoCard = videoCardSorter.getSortedByName(ascending);

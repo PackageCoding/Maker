@@ -63,8 +63,8 @@ public class MemoryController extends Controller{
 		if (order.equals("Descending"))
 			ascending = false;
 
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted Memory by " + field + " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted Memory by " + field + " " + order + ":");
 		switch (field) {
 		case "Name":
 			sortedMemory = memorySorter.getSortedByName(ascending);

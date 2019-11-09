@@ -63,8 +63,8 @@ public class MotherboardController extends Controller {
 		if (order == "Descending")
 			ascending = false;
 
-		System.out.println("--------------------------------------------------");
-		System.out.println("Sorted Motherboard by " + field + " " + order + ":");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("Sorted Motherboard by " + field + " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedMotherboard = motherboardSorter.getSortedByName(ascending);

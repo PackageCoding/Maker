@@ -52,7 +52,7 @@ public class ListTab extends JPanel{
 	    this.add(sortTitle);
 	    
 	    sortField = new JLabel("Name");
-	    sortField.setBounds(890,50,100,50);
+	    sortField.setBounds(890,50,200,50);
 	    this.add(sortField);
 	    
 	    sortOrder = new JLabel("Ascending");
