@@ -15,12 +15,11 @@ public class MemoryController extends Controller{
 	public MemoryController(XSSFWorkbook workbook) throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(1);
 		boolean firstLine = true;
-
+		
 		for (Row row : sheet) {
 			if (checkRowEmpty(row)) {
 				break;
 			} else if (firstLine) {
-				firstLine = false;
 				for(int titleNum=0; titleNum<8; titleNum++)
 					fieldTitle[titleNum] = row.getCell(titleNum).toString();
 				firstLine = false;
@@ -33,6 +32,7 @@ public class MemoryController extends Controller{
 				memoryList.add(memory);
 			}
 		}
+		
 		
 		tableData = new String[memoryList.size()][fieldTitle.length];
 		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {

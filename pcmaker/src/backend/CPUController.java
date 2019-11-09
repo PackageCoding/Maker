@@ -9,14 +9,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CPUController extends Controller{
 	private static ArrayList<CPU> cpuList = new ArrayList<>();
-	
 	private String[] fieldTitle = new String[9];
 	private String[][] tableData;
 
 	public CPUController(XSSFWorkbook workbook) throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		boolean firstLine = true;
-
+	
 		for (Row row : sheet) {
 			if (checkRowEmpty(row)) {
 				break;
@@ -33,6 +32,7 @@ public class CPUController extends Controller{
 				cpuList.add(cpu);
 			}
 		}
+		System.out.println(cpuList.size());
 		
 		tableData = new String[cpuList.size()][fieldTitle.length];
 		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
@@ -64,8 +64,8 @@ public class CPUController extends Controller{
 	public String[] getFieldTitle() {
 		return fieldTitle;
 	}
-
-	public String[][] getSortedData(String field, String order){
+	
+	public static ArrayList<CPU> getSortedList(String field, String order) {
 		CPUSorter cpuSorter = new CPUSorter(cpuList);
 		boolean ascending = true;
 		ArrayList<CPU> sortedCPU = new ArrayList<>();
@@ -105,6 +105,13 @@ public class CPUController extends Controller{
 				break;
 		}
 		
+		return sortedCPU;
+	}
+
+	public String[][] getSortedData(String field, String order){
+		
+		ArrayList<CPU> sortedCPU = getSortedList(field, order);
+		
 		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
 			tableData[rowNum][0] = sortedCPU.get(rowNum).getName();
 			tableData[rowNum][1] = Integer.toString(sortedCPU.get(rowNum).getCoreCount());
@@ -120,14 +127,14 @@ public class CPUController extends Controller{
 		return tableData;
 	}
 	
-	public CPU getRequired(String CPUbrand,int price) {
-		getSortedData("Price","Descending");
-		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
-			if (CPUbrand =="No Preference" && Integer.parseInt(tableData[rowNum][7])<=price) {
-				return searchById(Integer.parseInt(tableData[rowNum][8]));
+	public static CPU getRequired(String CPUbrand,int price) {
+		ArrayList<CPU> sortedCPU = getSortedList("Price","Descending");
+		for(int rowNum=0; rowNum<sortedCPU.size(); rowNum++) {
+			if (CPUbrand =="No Preference" && sortedCPU.get(rowNum).getPrice()<=price) {
+				return searchById(sortedCPU.get(rowNum).getId());
 			}
-			else if (Integer.parseInt(tableData[rowNum][7])<=price && tableData[rowNum][0].charAt(0)==CPUbrand.charAt(0))
-				return searchById(Integer.parseInt(tableData[rowNum][8]));
+			else if (sortedCPU.get(rowNum).getPrice()<=price && sortedCPU.get(rowNum).getName().charAt(0)==CPUbrand.charAt(0))
+				return searchById(sortedCPU.get(rowNum).getId());
 		}
 		return null;
 	}

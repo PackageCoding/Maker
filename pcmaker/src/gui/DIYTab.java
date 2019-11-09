@@ -42,7 +42,7 @@ public class DIYTab extends JPanel implements TotalObserver{
         
         FileInputStream file = new FileInputStream(new File("Components.xlsx"));
 		XSSFWorkbook workbook = new XSSFWorkbook(file);
-		CPUController cpuController = new CPUController(workbook);
+		//CPUController cpuController = new CPUController(workbook);
 
         JLabel specListOutput = new JLabel();
     	specListOutput.setText("The following specification list is fulfilled your requirement:");
@@ -117,7 +117,7 @@ public class DIYTab extends JPanel implements TotalObserver{
         		budget.setCPUPreference(getSelectedButtonText(cpuGroup));
         		budget.setCardPreference(getSelectedButtonText(cardGroup));
         		budget.showTotal();
-        		specList = new SpecList(budget,cpuController);
+        		specList = new SpecList(budget);
         		specList.print();
 			}          
 	      });
