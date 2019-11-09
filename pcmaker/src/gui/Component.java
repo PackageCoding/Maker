@@ -18,7 +18,6 @@ public abstract class Component {
 		componentBar.setBounds(100,yValue,200,20);
 		componentBar.setBlockIncrement(10);
 		componentBar.setValue(0);
-		componentBar.setMaximum(35000);
 		
 		componentBar.setUI(new BasicScrollBarUI()
 	    {   

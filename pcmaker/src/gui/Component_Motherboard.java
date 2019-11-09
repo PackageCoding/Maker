@@ -9,6 +9,7 @@ public class Component_Motherboard extends Component {
 	}
 	
 	public void barControlListener(Budget budget) {
+		componentBar.setMaximum(7000);
 		componentBar.addAdjustmentListener(new AdjustmentListener() {
         	public void adjustmentValueChanged(AdjustmentEvent e) {
         		componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));

@@ -9,6 +9,7 @@ public class Component_Ram extends Component {
 	}
 	
 	public void barControlListener(Budget budget) {
+		componentBar.setMaximum(3300);
 		componentBar.addAdjustmentListener(new AdjustmentListener() {
         	public void adjustmentValueChanged(AdjustmentEvent e) {
         		componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
