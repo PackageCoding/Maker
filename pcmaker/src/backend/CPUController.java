@@ -88,7 +88,7 @@ public class CPUController extends Controller{
 			case "Boost Clock":
 				sortedCPU = cpuSorter.getSortedByCoreClock(ascending);
 				break;
-			case "TDP":
+			case "TDP (W)":
 				sortedCPU = cpuSorter.getSortedByTdp(ascending);
 				break;
 			case "Integrated Graphics":

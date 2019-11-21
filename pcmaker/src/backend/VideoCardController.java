@@ -98,7 +98,7 @@ public class VideoCardController  extends Controller{
 			case "Color":
 				sortedVideoCard = videoCardSorter.getSortedByColor(ascending);
 				break;
-			case "TDP":
+			case "TDP (W)":
 				sortedVideoCard = videoCardSorter.getSortedByTdp(ascending);
 				break;
 			case "Price":
@@ -114,6 +114,7 @@ public class VideoCardController  extends Controller{
 	public String[][] getSortedData(String field, String order){
 		
 		ArrayList<VideoCard> sortedVideoCard = getSortedList(field, order);
+		
 		for(int rowNum=0; rowNum<videoCardList.size(); rowNum++) {
 			tableData[rowNum][0] = sortedVideoCard.get(rowNum).getName();
 			tableData[rowNum][1] = sortedVideoCard.get(rowNum).getChipset();

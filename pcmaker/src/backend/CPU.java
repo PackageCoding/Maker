@@ -103,8 +103,8 @@ public class CPU extends Components {
 	public static Comparator<CPU> tdpComparator = new Comparator<CPU>() {
 		@Override
 		public int compare(CPU c1, CPU c2) {
-			int t1 = Integer.parseInt(c1.getTdp().replaceAll(" W", ""));
-			int t2 = Integer.parseInt(c2.getTdp().replaceAll(" W", ""));
+			double t1 = Double.parseDouble(c1.getTdp().replaceAll(" W", ""));
+			double t2 = Double.parseDouble(c2.getTdp().replaceAll(" W", ""));
 			return (t2 > t1 ? -1 : (t2 == t1 ? 0 : 1));
 		}
 	};

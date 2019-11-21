@@ -157,8 +157,8 @@ public class VideoCard extends Components {
 	public static Comparator<VideoCard> tdpComparator = new Comparator<VideoCard>() {
 		@Override
 		public int compare(VideoCard v1, VideoCard v2) {
-			int t1 = Integer.parseInt(v1.getTdp().replaceAll("W", ""));
-			int t2 = Integer.parseInt(v2.getTdp().replaceAll("W", ""));
+			double t1 = Double.parseDouble(v1.getTdp().replaceAll("W", ""));
+			double t2 = Double.parseDouble(v2.getTdp().replaceAll("W", ""));
 			return (t2 > t1 ? -1 : (t2 == t1 ? 0 : 1));
 		}
 	};
