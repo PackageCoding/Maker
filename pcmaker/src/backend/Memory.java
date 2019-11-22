@@ -1,4 +1,4 @@
-package backend;
+	package backend;
 
 import java.util.Comparator;
 
@@ -87,25 +87,15 @@ public class Memory extends Components {
 
 			int mo1 = Integer.parseInt(m1.getModules().substring(0, m1.getModules().indexOf(" ")));
 			int mo2 = Integer.parseInt(m2.getModules().substring(0, m2.getModules().indexOf(" ")));
-
-			if (mo1 != mo2) {
-				return (mo2 > mo1 ? -1 : (mo2 == mo1 ? 0 : 1));
-			} else {
-				String[] tokens1 = (m1.getModules().replaceAll("GB", "")).split(" x ");
-				String[] tokens2 = (m2.getModules().replaceAll("GB", "")).split(" x ");
-
-				if (tokens1.length == 1 && tokens2.length == 1) {
-					return (mo2 > mo1 ? -1 : (mo2 == mo1 ? 0 : 1));
-				} else if (tokens1.length == 1 && tokens2.length == 2) {
-
-					return (mo2 > mo1 ? -1 : (mo2 == mo1 ? 0 : 1));
-				} else if (tokens1.length == 2 && tokens2.length == 1) {
-					return (mo1 > mo2 ? -1 : (mo2 == mo1 ? 0 : 1));
-				} else {
-					return (Integer.parseInt(tokens2[1]) > Integer.parseInt(tokens1[1]) ? -1
-							: (Integer.parseInt(tokens2[1]) == Integer.parseInt(tokens1[1]) ? 0 : 1));
-				}
-			}
+			String[] tokens1 = (m1.getModules().replaceAll("GB", "")).split(" x ");
+			String[] tokens2 = (m2.getModules().replaceAll("GB", "")).split(" x ");
+			System.out.printf(tokens1[0]); 
+			System.out.printf("next");
+			int total1 = Integer.parseInt(tokens1[1])* mo1;
+			int total2 = Integer.parseInt(tokens2[1])* mo2;
+			
+			return total1 < total2? -1 : total1 == total2 ? 0:1;
+		
 		}
 
 	};
