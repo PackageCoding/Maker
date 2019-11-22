@@ -8,11 +8,24 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class VideoCardController  extends Controller{
+	private static VideoCardController instance = null;
+	
 	private static ArrayList<VideoCard> videoCardList = new ArrayList<>();
 	private String[] fieldTitle = new String[10];
 	private String[][] tableData;
+	
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new VideoCardController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
 
-	public VideoCardController(XSSFWorkbook workbook) throws IOException {
+	private VideoCardController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(5);
 		boolean firstLine = true;
 

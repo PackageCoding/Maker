@@ -7,12 +7,25 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class StorageController extends Controller{
+	private static StorageController instance = null;
+	
 	private static ArrayList<Storage> storageList = new ArrayList<>();
 
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
 	
-	public StorageController(XSSFWorkbook workbook) throws IOException {
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new StorageController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
+	
+	private StorageController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(4);
 		boolean firstLine = true;
 

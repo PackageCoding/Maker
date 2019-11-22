@@ -8,11 +8,24 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MotherboardController extends Controller {
+	private static MotherboardController instance = null;
+	
 	private static ArrayList<Motherboard> motherboardList = new ArrayList<>();
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
+	
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new MotherboardController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
 
-	public MotherboardController(XSSFWorkbook workbook) throws IOException {
+	private MotherboardController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(2);
 		boolean firstLine = true;
 

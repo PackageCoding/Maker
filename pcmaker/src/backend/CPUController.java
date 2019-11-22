@@ -8,11 +8,25 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CPUController extends Controller{
+	private static CPUController instance = null;
+	
 	private static ArrayList<CPU> cpuList = new ArrayList<>();
 	private String[] fieldTitle = new String[9];
 	private String[][] tableData;
+	
+	
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new CPUController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
 
-	public CPUController(XSSFWorkbook workbook) throws IOException {
+	private CPUController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		boolean firstLine = true;
 	

@@ -8,12 +8,25 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PowerSupplyController extends Controller {
+	private static PowerSupplyController instance = null;
+	
 	private static ArrayList<PowerSupply> powerSupplyList = new ArrayList<>();
 
 	private String[] fieldTitle = new String[7];
 	private String[][] tableData;
+	
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new PowerSupplyController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
 
-	public PowerSupplyController(XSSFWorkbook workbook) throws IOException {
+	private PowerSupplyController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(3);
 		boolean firstLine = true;
 

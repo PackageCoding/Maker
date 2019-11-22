@@ -8,11 +8,24 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MemoryController extends Controller{
+	private static MemoryController instance = null;
+	
 	private static ArrayList<Memory> memoryList = new ArrayList<>();
 	private String[] fieldTitle = new String[8];
 	private String[][] tableData;
 	
-	public MemoryController(XSSFWorkbook workbook) throws IOException {
+	public static Controller getInstance() {
+		if(instance == null) {
+			try {
+				instance = new MemoryController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return instance;	
+	}
+	
+	private MemoryController() throws IOException {
 		XSSFSheet sheet = workbook.getSheetAt(1);
 		boolean firstLine = true;
 		
