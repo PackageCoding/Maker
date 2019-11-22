@@ -75,8 +75,8 @@ public class PowerSupply extends Components {
 	public static Comparator<PowerSupply> wattageComparator = new Comparator<PowerSupply>() {
 		@Override
 		public int compare(PowerSupply p1, PowerSupply p2) {
-			int t1 = Integer.parseInt(p1.getWattage().replaceAll(" W", ""));
-			int t2 = Integer.parseInt(p2.getWattage().replaceAll(" W", ""));
+			double t1 = Double.parseDouble(p1.getWattage().replaceAll(" W", ""));
+			double t2 = Double.parseDouble(p2.getWattage().replaceAll(" W", ""));
 			return (t2 > t1 ? -1 : (t2 == t1 ? 0 : 1));
 		}
 	};

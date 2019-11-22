@@ -100,7 +100,7 @@ public class CPUController extends Controller{
 				sortedCPU = cpuSorter.getSortedByCoreClock(ascending);
 				break;
 			case "Boost Clock":
-				sortedCPU = cpuSorter.getSortedByCoreClock(ascending);
+				sortedCPU = cpuSorter.getSortedByBoostClock(ascending);
 				break;
 			case "TDP (W)":
 				sortedCPU = cpuSorter.getSortedByTdp(ascending);
