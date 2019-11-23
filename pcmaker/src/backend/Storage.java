@@ -86,7 +86,17 @@ public class Storage extends Components {
 	public static Comparator<Storage> typeComparator = new Comparator<Storage>() {
 		@Override
 		public int compare(Storage s1, Storage s2) {
-			return (int) (s1.getType().compareTo(s2.getType()));
+			String[] tokens1 = s1.getType().split(" ");
+			String[] tokens2 = s2.getType().split(" ");
+			try {
+				int t1 = Integer.parseInt(tokens1[0]);
+				int t2 = Integer.parseInt(tokens2[0]);
+				return (t2 > t1 ? -1 : (t2 == t1 ? 0 : 1));
+			}
+			catch(Exception e) {
+				return (int) (s1.getType().compareTo(s2.getType()));
+				
+			}
 		}
 	};
 
