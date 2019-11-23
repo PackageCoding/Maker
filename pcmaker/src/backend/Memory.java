@@ -1,4 +1,4 @@
-	package backend;
+package backend;
 
 import java.util.Comparator;
 
@@ -89,15 +89,12 @@ public class Memory extends Components {
 			int mo2 = Integer.parseInt(m2.getModules().substring(0, m2.getModules().indexOf(" ")));
 			String[] tokens1 = (m1.getModules().replaceAll("GB", "")).split(" x ");
 			String[] tokens2 = (m2.getModules().replaceAll("GB", "")).split(" x ");
-			System.out.printf(tokens1[0]); 
-			System.out.printf("next");
 			int total1 = Integer.parseInt(tokens1[1])* mo1;
 			int total2 = Integer.parseInt(tokens2[1])* mo2;
-			
+			//System.out.printf(tokens1[0]); 
+			//System.out.printf("next");
 			return total1 < total2? -1 : total1 == total2 ? 0:1;
-		
 		}
-
 	};
 
 	public static Comparator<Memory> colorComparator = new Comparator<Memory>() {

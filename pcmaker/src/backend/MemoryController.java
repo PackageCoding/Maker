@@ -47,16 +47,7 @@ public class MemoryController extends Controller{
 		}
 
 		tableData = new String[memoryList.size()][fieldTitle.length];
-		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {
-			tableData[rowNum][0] = memoryList.get(rowNum).getName();
-			tableData[rowNum][1] = memoryList.get(rowNum).getSpeed();
-			tableData[rowNum][2] = memoryList.get(rowNum).getType();
-			tableData[rowNum][3] = memoryList.get(rowNum).getModules();
-			tableData[rowNum][4] = memoryList.get(rowNum).getColor();
-			tableData[rowNum][5] = Integer.toString(memoryList.get(rowNum).getCasLatency());
-			tableData[rowNum][6] = Integer.toString(memoryList.get(rowNum).getPrice());
-			tableData[rowNum][7] = Integer.toString(memoryList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static Memory searchById(int id) {

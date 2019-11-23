@@ -47,15 +47,7 @@ public class PowerSupplyController extends Controller {
 		}
 
 		tableData = new String[powerSupplyList.size()][fieldTitle.length];
-		for (int rowNum = 0; rowNum < powerSupplyList.size(); rowNum++) {
-			tableData[rowNum][0] = powerSupplyList.get(rowNum).getName();
-			tableData[rowNum][1] = powerSupplyList.get(rowNum).getFormFactor();
-			tableData[rowNum][2] = powerSupplyList.get(rowNum).getEfficiencyRating();
-			tableData[rowNum][3] = powerSupplyList.get(rowNum).getWattage();
-			tableData[rowNum][4] = powerSupplyList.get(rowNum).getModular();
-			tableData[rowNum][5] = Integer.toString(powerSupplyList.get(rowNum).getPrice());
-			tableData[rowNum][6] = Integer.toString(powerSupplyList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static PowerSupply searchById(int id) {

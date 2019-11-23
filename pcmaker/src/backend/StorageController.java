@@ -46,16 +46,7 @@ public class StorageController extends Controller{
 		}
 		
 		tableData = new String[storageList.size()][fieldTitle.length];
-		for(int rowNum=0; rowNum<storageList.size(); rowNum++) {
-			tableData[rowNum][0] = storageList.get(rowNum).getName();
-			tableData[rowNum][1] = storageList.get(rowNum).getCapacity();
-			tableData[rowNum][2] = storageList.get(rowNum).getType();
-			tableData[rowNum][3] = storageList.get(rowNum).getCache();
-			tableData[rowNum][4] = storageList.get(rowNum).getFormFactor();
-			tableData[rowNum][5] = storageList.get(rowNum).get_Interface();
-			tableData[rowNum][6] = Integer.toString(storageList.get(rowNum).getPrice());
-			tableData[rowNum][7] = Integer.toString(storageList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static Storage searchById(int id) {

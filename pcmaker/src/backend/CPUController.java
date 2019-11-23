@@ -46,20 +46,8 @@ public class CPUController extends Controller{
 				cpuList.add(cpu);
 			}
 		}
-		//System.out.println(cpuList.size());
-		
 		tableData = new String[cpuList.size()][fieldTitle.length];
-		for(int rowNum=0; rowNum<cpuList.size(); rowNum++) {
-			tableData[rowNum][0] = cpuList.get(rowNum).getName();
-			tableData[rowNum][1] = Integer.toString(cpuList.get(rowNum).getCoreCount());
-			tableData[rowNum][2] = cpuList.get(rowNum).getCoreClock();
-			tableData[rowNum][3] = cpuList.get(rowNum).getBoostClock();
-			tableData[rowNum][4] = cpuList.get(rowNum).getTdp();
-			tableData[rowNum][5] = cpuList.get(rowNum).getIntegratedGraphics();
-			tableData[rowNum][6] = cpuList.get(rowNum).getSmt();
-			tableData[rowNum][7] = Integer.toString(cpuList.get(rowNum).getPrice());
-			tableData[rowNum][8] = Integer.toString(cpuList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static CPU searchById(int id) {

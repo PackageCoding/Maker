@@ -47,16 +47,7 @@ public class MotherboardController extends Controller {
 		}
 
 		tableData = new String[motherboardList.size()][fieldTitle.length];
-		for (int rowNum = 0; rowNum < motherboardList.size(); rowNum++) {
-			tableData[rowNum][0] = motherboardList.get(rowNum).getName();
-			tableData[rowNum][1] = motherboardList.get(rowNum).getSocket_cpu();
-			tableData[rowNum][2] = motherboardList.get(rowNum).getFormFactor();
-			tableData[rowNum][3] = Integer.toString(motherboardList.get(rowNum).getRamSlots());
-			tableData[rowNum][4] = motherboardList.get(rowNum).getMaxRam();
-			tableData[rowNum][5] = motherboardList.get(rowNum).getColor();
-			tableData[rowNum][6] = Integer.toString(motherboardList.get(rowNum).getPrice());
-			tableData[rowNum][7] = Integer.toString(motherboardList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static Motherboard searchById(int id) {

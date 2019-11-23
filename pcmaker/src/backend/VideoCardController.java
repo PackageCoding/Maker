@@ -48,18 +48,7 @@ public class VideoCardController  extends Controller{
 		}
 		
 		tableData = new String[videoCardList.size()][fieldTitle.length];
-		for(int rowNum=0; rowNum<videoCardList.size(); rowNum++) {
-			tableData[rowNum][0] = videoCardList.get(rowNum).getName();
-			tableData[rowNum][1] = videoCardList.get(rowNum).getChipset();
-			tableData[rowNum][2] = videoCardList.get(rowNum).getMemory();
-			tableData[rowNum][3] = videoCardList.get(rowNum).getCoreClock();
-			tableData[rowNum][4] = videoCardList.get(rowNum).getBoostClock();
-			tableData[rowNum][5] = videoCardList.get(rowNum).get_Interface();
-			tableData[rowNum][6] = videoCardList.get(rowNum).getColor();
-			tableData[rowNum][9] = videoCardList.get(rowNum).getTdp(); //added here
-			tableData[rowNum][7] = Integer.toString(videoCardList.get(rowNum).getPrice());
-			tableData[rowNum][8] = Integer.toString(videoCardList.get(rowNum).getId());
-		}
+		tableData = getSortedData("Name","ascending");
 	}
 
 	public static VideoCard searchById(int id) {
@@ -78,7 +67,6 @@ public class VideoCardController  extends Controller{
 	public String[] getFieldTitle() {
 		return fieldTitle;
 	}
-
 
 	public static ArrayList<VideoCard> getSortedList(String field, String order) {
 		VideoCardSorter videoCardSorter = new VideoCardSorter(videoCardList);
@@ -125,7 +113,6 @@ public class VideoCardController  extends Controller{
 	}
 	
 	public String[][] getSortedData(String field, String order){
-		
 		ArrayList<VideoCard> sortedVideoCard = getSortedList(field, order);
 		
 		for(int rowNum=0; rowNum<videoCardList.size(); rowNum++) {
@@ -136,7 +123,7 @@ public class VideoCardController  extends Controller{
 			tableData[rowNum][4] = sortedVideoCard.get(rowNum).getBoostClock();
 			tableData[rowNum][5] = sortedVideoCard.get(rowNum).get_Interface();
 			tableData[rowNum][6] = sortedVideoCard.get(rowNum).getColor();
-			tableData[rowNum][9] = sortedVideoCard.get(rowNum).getTdp();  //here
+			tableData[rowNum][9] = sortedVideoCard.get(rowNum).getTdp();
 			tableData[rowNum][7] = Integer.toString(sortedVideoCard.get(rowNum).getPrice());
 			tableData[rowNum][8] = Integer.toString(sortedVideoCard.get(rowNum).getId());
 		}
