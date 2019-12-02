@@ -1,10 +1,6 @@
 package backend;
 
-import java.io.File.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import gui.Budget;
-//import gui.Sub_Budget;
 
 public class SpecList {
 	private Budget budget;
@@ -14,8 +10,6 @@ public class SpecList {
 	private Storage storage;
 	private VideoCard videoCard;
 	private PowerSupply powerSupply;
-	private PowerSupplyController powerSupplyController;
-	
 	private String cpuMessage;
 	private String motherboardMessage;
 	private String memoryMessage;
@@ -47,11 +41,10 @@ public class SpecList {
 			return false;
 		}
 		else {
-			double power;
-			power = Double.parseDouble(cpu.getTdp()) + Double.parseDouble(videoCard.getTdp());
+			double power = Double.parseDouble(cpu.getTdp()) + Double.parseDouble(videoCard.getTdp());
 			this.powerSupply = PowerSupplyController.gerRequired(power,budget.getPsuPrice());
-//			System.out.println("Hello, here is your specification list with follwoing limitation: \n1: CPU Brand Preference: "+ budget.getCPUPreference() + "\n2: Video Card Brand Preference: "+ budget.getCardPreference() + "\n3. Total input cost: $" + budget.getTotal());
-//			System.out.println("Our suggesttion will be:");
+			if (powerSupply==null)
+				return false;
 			cpuMessage = "Cpu: " + cpu.getName() +", Price: $" + cpu.getPrice();
 			motherboardMessage = "Montherboard: " + montherboard.getName() +", Price: $" + montherboard.getPrice();
 			memoryMessage = "Memory: " + memory.getName() +", Price: $" + memory.getPrice();
@@ -60,7 +53,6 @@ public class SpecList {
 			powerSupplyMessage = "PowerSupply: " + powerSupply.getName() +", Price: $" + powerSupply.getPrice();
 			int totalcost = cpu.getPrice() + montherboard.getPrice() + memory.getPrice() + storage.getPrice() + videoCard.getPrice() + powerSupply.getPrice();
 			totalMessage = "Total Cost:$" + totalcost;
-			
 			return true;
 		}
 	}
