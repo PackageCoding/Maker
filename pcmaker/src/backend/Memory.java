@@ -91,8 +91,6 @@ public class Memory extends Components {
 			String[] tokens2 = (m2.getModules().replaceAll("GB", "")).split(" x ");
 			int total1 = Integer.parseInt(tokens1[1])* mo1;
 			int total2 = Integer.parseInt(tokens2[1])* mo2;
-			//System.out.printf(tokens1[0]); 
-			//System.out.printf("next");
 			return total1 < total2? -1 : total1 == total2 ? 0:1;
 		}
 	};

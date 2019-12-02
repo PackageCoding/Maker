@@ -2,10 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CPUController extends Controller{
 	private static CPUController instance = null;
@@ -53,7 +51,6 @@ public class CPUController extends Controller{
 	public static CPU searchById(int id) {
 		for (CPU cpu : cpuList)
 			if (cpu.getId() == id) {
-				System.out.println(cpu.toString());
 				return cpu;
 			}
 		return null;
@@ -74,9 +71,7 @@ public class CPUController extends Controller{
 		
 		if (order.equals("Descending"))
 			ascending = false;
-		
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted CPU by " + field + " " + order + ":");
+
 		switch (field) {
 			case "Name":
 				sortedCPU = cpuSorter.getSortedByName(ascending);
@@ -103,7 +98,6 @@ public class CPUController extends Controller{
 				sortedCPU = cpuSorter.getSortedByPrice(ascending);
 				break;
 			default:
-				System.out.println("No such field or order!");
 				break;
 		}
 		

@@ -168,5 +168,4 @@ public class VideoCard extends Components {
 		return String.format("%-30s%-25s%-10s%-10s%-10s%-10s%-15s%-10d%-5d", super.getName(), this.chipset, this.memory,
 				this.coreClock, this.boostClock, this._interface, this.color, super.getPrice(), super.getId());
 	}
-	//havent add tdp
 }

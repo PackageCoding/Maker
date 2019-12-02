@@ -16,14 +16,6 @@ public class Component_PowerSupply extends Component {
         		componentBar.addMouseListener(new MouseAdapter() {
         			public void mouseReleased(MouseEvent e) {
         				int increment = componentBar.getValue() - budget.getPsuPrice();
-        				/*if(budget.reachTotal(increment)) {
-        					componentBar.setValue(budget.getRemaining()+budget.getPsuPrice());
-        					componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
-        					budget.addPsuPrice(budget.getRemaining());
-        				}
-        				else {
-        					budget.addPsuPrice(increment);
-        				}*/
         				budget.addPsuPrice(increment);
         			}
         		});

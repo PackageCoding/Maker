@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class StorageController extends Controller{
 	private static StorageController instance = null;
@@ -52,7 +51,6 @@ public class StorageController extends Controller{
 	public static Storage searchById(int id) {
 		for (Storage storage : storageList)
 			if (storage.getId() == id) {
-				System.out.println(storage.toString());
 				return storage;
 			}
 		return null;
@@ -76,8 +74,6 @@ public class StorageController extends Controller{
 		if (order.equals("Descending"))
 			ascending = false;
 		
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted Storage by " + field+ " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedStorage = storageSorter.getSortedByName(ascending);
@@ -101,7 +97,6 @@ public class StorageController extends Controller{
 				sortedStorage = storageSorter.getSortedByPrice(ascending);
 				break;
 			default:
-				System.out.println("No such field or order!");
 				break;
 		}
 		return sortedStorage;

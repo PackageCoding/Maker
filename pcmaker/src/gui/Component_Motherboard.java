@@ -16,14 +16,6 @@ public class Component_Motherboard extends Component {
         		componentBar.addMouseListener(new MouseAdapter() {
         			public void mouseReleased(MouseEvent e) {
         				int increment = componentBar.getValue() - budget.getMbPrice();
-        				/*if(budget.reachTotal(increment)) {
-        					componentBar.setValue(budget.getRemaining()+budget.getMbPrice());
-        					componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
-        					budget.addMbPrice(budget.getRemaining());
-        				}
-        				else {
-        					budget.addMbPrice(increment);
-        				}*/
         				budget.addMbPrice(increment);
         			}
         		});

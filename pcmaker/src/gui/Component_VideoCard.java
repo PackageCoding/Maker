@@ -20,14 +20,6 @@ public class Component_VideoCard extends Component{
         		componentBar.addMouseListener(new MouseAdapter() {
         			public void mouseReleased(MouseEvent e) {
         				int increment = componentBar.getValue() - budget.getVideoCardPrice();
-        				/*if(budget.reachTotal(increment)) {
-        					componentBar.setValue(budget.getRemaining()+budget.getCpuPrice());
-        					componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
-        					budget.addCpuPrice(budget.getRemaining());
-        				}
-        				else {
-        					budget.addCpuPrice(increment);
-        				}*/
         				budget.addVideoCardPrice(increment);
         			}
         		});

@@ -33,24 +33,16 @@ public abstract class Component {
 	        }
 	        
             @Override 
-            protected void paintTrack(Graphics g, JComponent c, Rectangle r)
-            {
+            protected void paintTrack(Graphics g, JComponent c, Rectangle r){
                 g.setColor(Color.white);
                 g.fillRect(r.x, r.y + 7, r.width, 6);
             }
             
-            protected void paintThumb(Graphics g, JComponent c, Rectangle r)
-            {   	
-            	
+            protected void paintThumb(Graphics g, JComponent c, Rectangle r){   	
                 g.translate(r.x, r.y);                           
-
                 g.setColor(thumbDarkShadowColor);        
                 g.fillRect(0, 0, r.width, r.height-1);
-                //g.fillOval(0, 6, 8, 8);
-                
                 g.translate(-r.x, -r.y);
-
-                
             }
 
 	        private JButton createZeroButton() {

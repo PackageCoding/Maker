@@ -27,7 +27,6 @@ public class SpecList {
 	public boolean findList() {
 		this.cpu = CPUController.getRequired(budget.getCPUPreference(),budget.getCpuPrice());
 		if (cpu==null) {
-			System.out.println("No CPU model can fulfill your requirment!");
 			return false;
 		}else{
 			this.montherboard = MotherboardController.getRequired(budget.getCPUPreference(),this.cpu.getCoreCount(),budget.getMbPrice());
@@ -37,7 +36,6 @@ public class SpecList {
 		}
 		
 		if (montherboard==null || memory==null || storage==null || videoCard==null) {
-			System.out.println("No result found !");
 			return false;
 		}
 		else {

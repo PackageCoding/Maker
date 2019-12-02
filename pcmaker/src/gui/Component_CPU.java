@@ -1,10 +1,6 @@
 package gui;
 import java.awt.event.*;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
-import backend.CPU;
 
 public class Component_CPU extends Component {
 
@@ -20,14 +16,6 @@ public class Component_CPU extends Component {
         		componentBar.addMouseListener(new MouseAdapter() {
         			public void mouseReleased(MouseEvent e) {
         				int increment = componentBar.getValue() - budget.getCpuPrice();
-        				/*if(budget.reachTotal(increment)) {
-        					componentBar.setValue(budget.getRemaining()+budget.getCpuPrice());
-        					componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
-        					budget.addCpuPrice(budget.getRemaining());
-        				}
-        				else {
-        					budget.addCpuPrice(increment);
-        				}*/
         				budget.addCpuPrice(increment);
         			}
         		});

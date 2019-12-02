@@ -4,20 +4,12 @@ import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import backend.CPUController;
 import backend.Controller;
-import backend.MemoryController;
-import backend.MotherboardController;
-import backend.PowerSupplyController;
-import backend.StorageController;
-import backend.VideoCardController;
 
 public class PcPicker extends Frame {
 	static private JPanel diyPanel, cpuPanel, memoryPanel, montherboardPanel, powerSupplyPanel, videoCardPanel,
 			storagePanel;
 
-	//please give me commit!!!
 	public PcPicker() throws IOException {
 		JFrame frame = new JFrame("CS3443 Group 17 - PC-PICKER");
 		diyPanel = new JPanel();
@@ -39,7 +31,6 @@ public class PcPicker extends Frame {
 		try {
 			file = new FileInputStream(new File("Components.xlsx"));
 			Controller.workbook = new XSSFWorkbook(file);
-			//cpuController.searchById(1);
 
 			JFrame frame = new JFrame("CS3443 Group 17 - PC-PICKER");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,12 +45,6 @@ public class PcPicker extends Frame {
 			powerSupplyPanel = TabFactory.getTab("powersupply");
 			storagePanel = TabFactory.getTab("storage");
 			videoCardPanel = TabFactory.getTab("videocard");
-//			cpuPanel = new ListTab(new CPUController(workbook));
-//			memoryPanel = new ListTab(new MemoryController(workbook));
-//			montherboardPanel = new ListTab(new MotherboardController(workbook));
-//			powerSupplyPanel = new ListTab(new PowerSupplyController(workbook));
-//			storagePanel = new ListTab(new StorageController(workbook));
-//			videoCardPanel = new ListTab(new VideoCardController(workbook));
 			
 			tabbedPane.addTab("DIY Planner", diyPanel);
 			tabbedPane.addTab("CPU List", cpuPanel);

@@ -53,7 +53,6 @@ public class MemoryController extends Controller{
 	public static Memory searchById(int id) {
 		for (Memory memory : memoryList)
 			if (memory.getId() == id) {
-				System.out.println(memory.toString());
 				return memory;
 			}
 		return null;
@@ -67,8 +66,6 @@ public class MemoryController extends Controller{
 		if (order.equals("Descending"))
 			ascending = false;
 
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted Memory by " + field + " " + order + ":");
 		switch (field) {
 		case "Name":
 			sortedMemory = memorySorter.getSortedByName(ascending);
@@ -92,7 +89,6 @@ public class MemoryController extends Controller{
 			sortedMemory = memorySorter.getSortedByPrice(ascending);
 			break;
 		default:
-			System.out.println("No such field or order!");
 			break;
 		}
 		return sortedMemory;

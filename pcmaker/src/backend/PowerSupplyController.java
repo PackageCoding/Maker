@@ -2,10 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PowerSupplyController extends Controller {
 	private static PowerSupplyController instance = null;
@@ -53,7 +51,6 @@ public class PowerSupplyController extends Controller {
 	public static PowerSupply searchById(int id) {
 		for (PowerSupply powerSupply : powerSupplyList)
 			if (powerSupply.getId() == id) {
-				System.out.println(powerSupply.toString());
 				return powerSupply;
 			}
 		return null;
@@ -76,8 +73,6 @@ public class PowerSupplyController extends Controller {
 		if (order.equals("Descending"))
 			ascending = false;
 
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted PowerSupply by " + field + " " + order + ":");
 		switch (field) {
 		case "Name":
 			sortedPowerSupply = powerSupplySorter.getSortedByName(ascending);
@@ -98,7 +93,6 @@ public class PowerSupplyController extends Controller {
 			sortedPowerSupply = powerSupplySorter.getSortedByPrice(ascending);
 			break;
 		default:
-			System.out.println("No such field or order!");
 			break;
 		}
 

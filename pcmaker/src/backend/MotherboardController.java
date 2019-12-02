@@ -2,10 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MotherboardController extends Controller {
 	private static MotherboardController instance = null;
@@ -53,7 +51,6 @@ public class MotherboardController extends Controller {
 	public static Motherboard searchById(int id) {
 		for (Motherboard motherboard : motherboardList)
 			if (motherboard.getId() == id) {
-				System.out.println(motherboard.toString());
 				return motherboard;
 			}
 		return null;
@@ -67,8 +64,6 @@ public class MotherboardController extends Controller {
 		if (order == "Descending")
 			ascending = false;
 
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted Motherboard by " + field + " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedMotherboard = motherboardSorter.getSortedByName(ascending);
@@ -92,7 +87,6 @@ public class MotherboardController extends Controller {
 				sortedMotherboard = motherboardSorter.getSortedByPrice(ascending);
 				break;
 			default:
-				System.out.println("No such field or order!");
 				break;
 		}
 

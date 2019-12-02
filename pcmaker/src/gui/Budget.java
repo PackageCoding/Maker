@@ -1,26 +1,9 @@
 package gui;
 
-import javax.swing.JPanel;
-
 public class Budget {
 	private int total, cpuPrice, mbPrice, ramPrice, psuPrice, videoCardPrice, storagePrice;
 	private String preferCPU, preferVideoCard;
 	private TotalObserver observer;
-	
-	/*public boolean reachTotal(int newValue) {
-		int sum = cpuPrice + mbPrice + ramPrice + psuPrice + newValue;
-		if(sum>total)
-			return true;
-		
-		return false;
-	}
-	
-	public int getRemaining() {
-		int remain = total - cpuPrice - mbPrice - ramPrice - psuPrice;
-		if(remain>0) 
-			return remain;
-		return 0;
-	}*/
 	
 	public Budget(TotalObserver observer) {
 		this.observer = observer;
@@ -28,7 +11,6 @@ public class Budget {
 		preferCPU = "Null";
 		preferVideoCard = "Null";
 	}
-	
 	
 	public void resetComponentToZero() {
 		this.total = 0;
@@ -38,22 +20,6 @@ public class Budget {
 		this.psuPrice = 0;
 		this.videoCardPrice = 0;
 		this.storagePrice = 0;
-		
-		//observer.updateTotal();
-	}
-	
-	public void showTotal() {
-		System.out.println("------------------");
-		System.out.println(total);
-		System.out.println(cpuPrice);
-		System.out.println(mbPrice);
-		System.out.println(ramPrice);
-		System.out.println(videoCardPrice);
-		System.out.println(psuPrice);
-		System.out.println(storagePrice);
-		System.out.println(preferCPU);
-		System.out.println(preferVideoCard);
-		System.out.println("------------------");
 	}
 	
 	public int getTotal() {

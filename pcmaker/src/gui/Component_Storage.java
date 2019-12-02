@@ -20,14 +20,6 @@ public class Component_Storage extends Component {
         		componentBar.addMouseListener(new MouseAdapter() {
         			public void mouseReleased(MouseEvent e) {
         				int increment = componentBar.getValue() - budget.getStoragePrice();
-        				/*if(budget.reachTotal(increment)) {
-        					componentBar.setValue(budget.getRemaining()+budget.getCpuPrice());
-        					componentBarLabel.setText("$" + Integer.toString(componentBar.getValue()));
-        					budget.addCpuPrice(budget.getRemaining());
-        				}
-        				else {
-        					budget.addCpuPrice(increment);
-        				}*/
         				budget.addStoragePrice(increment);
         			}
         		});

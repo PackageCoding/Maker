@@ -1,33 +1,16 @@
 package gui;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Enumeration;
-
 import javax.swing.*;
-import javax.swing.event.*;
-
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import backend.CPUController;
-import backend.Controller;
 import backend.SpecList;
 
 public class DIYTab extends JPanel implements TotalObserver{
-	//private JTextField totalBudget;
-	private JLabel totalBudgetlabel, checkSubmittedTotalBudgetLabel,resultOutput;
+	private JLabel checkSubmittedTotalBudgetLabel,resultOutput;
 	private JButton calculateButtton;
-	private double totalBudgetValue = 0;
 	private Budget budget;
 	private SpecList specList;
 	private ButtonGroup cpuGroup, cardGroup;
-	private boolean calRsult = false;
-	
 	public DIYTab() throws IOException{
 		budget = new Budget(this);
 
@@ -37,10 +20,6 @@ public class DIYTab extends JPanel implements TotalObserver{
         Component videoBar = new Component_VideoCard(this, "Video Card", budget);
         Component psuBar = new Component_PowerSupply(this, "Power Supply",budget);
         Component storageBar = new Component_Storage(this, "Storage",budget);
-  
-        FileInputStream file = new FileInputStream(new File("Components.xlsx"));
-		XSSFWorkbook workbook = new XSSFWorkbook(file);
-		//CPUController cpuController = new CPUController(workbook);
 
         JLabel specListTitle = new JLabel();
     	specListTitle.setText("The following specification list is fulfilled your requirement:");
@@ -57,7 +36,6 @@ public class DIYTab extends JPanel implements TotalObserver{
         checkSubmittedTotalBudgetLabel.setBounds(10, 220, 180, 50);
         this.add(checkSubmittedTotalBudgetLabel);
         
-        
         calculateButtton = new JButton("Calculate");
         calculateButtton.setBounds(450, 400, 100, 60);
         this.add(calculateButtton);
@@ -66,7 +44,6 @@ public class DIYTab extends JPanel implements TotalObserver{
 			public void actionPerformed(ActionEvent arg0) {
         		budget.setCPUPreference(getSelectedButtonText(cpuGroup));
         		budget.setCardPreference(getSelectedButtonText(cardGroup));
-        		budget.showTotal();
         		specList = new SpecList(budget);
         		
         		if(specList.findList()) {

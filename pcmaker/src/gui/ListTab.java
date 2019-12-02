@@ -30,9 +30,6 @@ public class ListTab extends JPanel{
 	    // Column Names 
 	    String[] columnNames = controller.getFieldTitle();
 	    tableData = controller.getTableData();
-
-	    for(String s : columnNames)
-	    	System.out.println(s);
 	 
 	    // Initializing the JTable 
 	    table = new JTable(tableData, columnNames);
@@ -45,7 +42,6 @@ public class ListTab extends JPanel{
 	    this.add(scrollPane);
 		
 	    this.setLayout(new BorderLayout());
-        //this.setVisible(true);
 	    
 	    sortTitle = new JLabel("Sorted By:");
 	    sortTitle.setBounds(890,20,100,50);

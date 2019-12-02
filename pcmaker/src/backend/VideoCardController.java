@@ -2,10 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class VideoCardController  extends Controller{
 	private static VideoCardController instance = null;
@@ -54,7 +52,6 @@ public class VideoCardController  extends Controller{
 	public static VideoCard searchById(int id) {
 		for (VideoCard videoCard : videoCardList)
 			if (videoCard.getId() == id) {
-				System.out.println(videoCard.toString());
 				return videoCard;
 			}
 		return null;
@@ -75,8 +72,6 @@ public class VideoCardController  extends Controller{
 		
 		if (order.equals("Descending"))
 			ascending = false;
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("Sorted VideoCard by " + field+ " " + order + ":");
 		switch (field) {
 			case "Name":
 				sortedVideoCard = videoCardSorter.getSortedByName(ascending);
@@ -106,7 +101,6 @@ public class VideoCardController  extends Controller{
 				sortedVideoCard = videoCardSorter.getSortedByPrice(ascending);
 				break;
 			default:
-				System.out.println("No such field or order!");
 				break;
 		}
 		return sortedVideoCard;
@@ -132,7 +126,6 @@ public class VideoCardController  extends Controller{
 	
 	public static VideoCard gerRequired(String VideoCardBrand, int price) {
 		ArrayList<VideoCard> sortedVideoCard = getSortedList("Price","Descending");
-		System.out.println(VideoCardBrand);
 		for(int rowNum=0; rowNum<sortedVideoCard.size(); rowNum++) {
 			if (sortedVideoCard.get(rowNum).getPrice()<=price) {
 				if (VideoCardBrand =="No Preference")
