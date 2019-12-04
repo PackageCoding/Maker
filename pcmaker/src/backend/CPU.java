@@ -131,8 +131,24 @@ public class CPU extends Components {
 	
 	@Override
 	public String toString() {
-		return String.format("%-25s%-5d%-10s%-10s%-10s%-25s%-5s%-10d%-5d", super.getName(), this.coreCount, this.coreClock,
-				this.boostClock, this.tdp, this.integratedGraphics, this.smt, super.getPrice(), super.getId());
+		return String.format("%-25s%-5d%-10s%-10s%-10s%-25s%-5s%-10d%-5d", super.getName(), this.coreCount,
+				this.coreClock, this.boostClock, this.tdp, this.integratedGraphics, this.smt, super.getPrice(),
+				super.getId());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof CPU)) {
+			return false;
+		}
+		CPU c = (CPU) o;
+		return getName().equals(c.getName()) && getCoreCount() == (c.getCoreCount())
+				&& getCoreClock().equals(c.getCoreClock()) && getBoostClock().equals(c.getBoostClock())
+				&& getTdp().equals(c.getTdp()) && getIntegratedGraphics().equals(c.getIntegratedGraphics())
+				&& getSmt().equals(c.getSmt()) && getPrice() == c.getPrice() && getId() == c.getId();
 	}
 
 }

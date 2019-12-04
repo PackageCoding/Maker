@@ -165,7 +165,22 @@ public class VideoCard extends Components {
 
 	@Override
 	public String toString() {
-		return String.format("%-30s%-25s%-10s%-10s%-10s%-10s%-15s%-10d%-5d", super.getName(), this.chipset, this.memory,
-				this.coreClock, this.boostClock, this._interface, this.color, super.getPrice(), super.getId());
+		return String.format("%-30s%-25s%-10s%-10s%-10s%-10s%-15s%-10d%-5d%-5s", super.getName(), this.chipset, this.memory,
+				this.coreClock, this.boostClock, this._interface, this.color, super.getPrice(), super.getId(), this.getTdp());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof VideoCard)) {
+			return false;
+		}
+		VideoCard v = (VideoCard) o;
+		return getName().equals(v.getName()) && getChipset().equals(v.getChipset()) && getMemory().equals(v.getMemory())
+				&& getCoreClock().equals(v.getCoreClock()) && getBoostClock().equals(v.getBoostClock())
+				&& get_Interface().equals(v.get_Interface()) && getColor().equals(v.getColor())
+				&& getPrice() == v.getPrice() && getId() == v.getId() && getTdp().equals(v.getTdp());
 	}
 }

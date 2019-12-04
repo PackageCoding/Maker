@@ -121,5 +121,20 @@ public class Memory extends Components {
 		return String.format("%-45s%-15s%-15s%-10s%-20s%-10d%-10d%-5d", super.getName(), this.speed, this.type,
 				this.modules, this.color, this.casLatency, super.getPrice(), super.getId());
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Memory)) {
+			return false;
+		}
+		Memory m = (Memory) o;
+		return getName().equals(m.getName()) && getSpeed().equals(m.getSpeed())
+				&& getType().equals(m.getType()) && getModules().equals(m.getModules())
+				&& getColor().equals(m.getColor()) && getCasLatency() == (m.getCasLatency())
+				&& getPrice() == m.getPrice() && getId() == m.getId();
+	}
 
 }

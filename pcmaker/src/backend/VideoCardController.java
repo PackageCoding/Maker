@@ -52,6 +52,7 @@ public class VideoCardController  extends Controller{
 	public static VideoCard searchById(int id) {
 		for (VideoCard videoCard : videoCardList)
 			if (videoCard.getId() == id) {
+				System.out.println(videoCard.toString());
 				return videoCard;
 			}
 		return null;
@@ -124,7 +125,7 @@ public class VideoCardController  extends Controller{
 		return tableData;
 	}
 	
-	public static VideoCard gerRequired(String VideoCardBrand, int price) {
+	public static VideoCard getRequired(String VideoCardBrand, int price) {
 		ArrayList<VideoCard> sortedVideoCard = getSortedList("Price","Descending");
 		for(int rowNum=0; rowNum<sortedVideoCard.size(); rowNum++) {
 			if (sortedVideoCard.get(rowNum).getPrice()<=price) {

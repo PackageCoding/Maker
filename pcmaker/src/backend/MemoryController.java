@@ -53,6 +53,7 @@ public class MemoryController extends Controller{
 	public static Memory searchById(int id) {
 		for (Memory memory : memoryList)
 			if (memory.getId() == id) {
+				System.out.println(memory.toString());
 				return memory;
 			}
 		return null;
@@ -120,7 +121,7 @@ public class MemoryController extends Controller{
 		return tableData;
 	}
 	
-	public static Memory gerRequired(int price) {
+	public static Memory getRequired(int price) {
 		ArrayList<Memory> sortedMemory = getSortedList("Price","Descending");
 		for(int rowNum=0; rowNum<memoryList.size(); rowNum++) {
 			if (sortedMemory.get(rowNum).getPrice()<=price) {

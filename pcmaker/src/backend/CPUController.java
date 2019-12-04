@@ -51,6 +51,7 @@ public class CPUController extends Controller{
 	public static CPU searchById(int id) {
 		for (CPU cpu : cpuList)
 			if (cpu.getId() == id) {
+				System.out.println(cpu.toString());
 				return cpu;
 			}
 		return null;

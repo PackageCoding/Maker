@@ -100,5 +100,19 @@ public class Budget {
 	public String getCardPreference() {
 		return preferVideoCard;
 	}
+	
+	public void showTotal() {
+		System.out.println("------------------");
+		System.out.println(total);
+		System.out.println(cpuPrice);
+		System.out.println(mbPrice);
+		System.out.println(ramPrice);
+		System.out.println(videoCardPrice);
+		System.out.println(psuPrice);
+		System.out.println(storagePrice);
+		System.out.println(preferCPU);
+		System.out.println(preferVideoCard);
+		System.out.println("------------------");
+	}
 
 }

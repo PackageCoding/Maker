@@ -101,4 +101,18 @@ public class PowerSupply extends Components {
 				this.efficiencyRating, this.wattage, this.modular, super.getPrice(), super.getId());
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof PowerSupply)) {
+			return false;
+		}
+		PowerSupply p = (PowerSupply) o;
+		return getName().equals(p.getName()) && getFormFactor().equals(p.getFormFactor())
+				&& getEfficiencyRating().equals(p.getEfficiencyRating()) && getWattage().equals(p.getWattage())
+				&& getModular().equals(p.getModular()) && getPrice() == p.getPrice() && getId() == p.getId();
+	}
+
 }

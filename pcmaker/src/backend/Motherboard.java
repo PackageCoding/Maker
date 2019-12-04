@@ -25,20 +25,40 @@ public class Motherboard extends Components {
 		return this.socket_cpu;
 	}
 
+	public void setSocket_cpu(String socket_cpu) {
+		this.socket_cpu = socket_cpu;
+	}
+
 	public String getFormFactor() {
 		return this.formFactor;
 	}
-
+	
+	public void setFormFactor(String formFactor) {
+		this.formFactor = formFactor;
+	}
+	
 	public int getRamSlots() {
 		return this.ramSlots;
+	}
+	
+	public void setRamSlots(int ramSlots) {
+		this.ramSlots = ramSlots;
 	}
 
 	public String getMaxRam() {
 		return this.maxRam;
 	}
-
+	
+	public void setMaxRam(String maxRam) {
+		this.maxRam = maxRam;
+	}
+	
 	public String getColor() {
 		return this.color;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public static Comparator<Motherboard> nameComparator = new Comparator<Motherboard>() {
@@ -96,6 +116,21 @@ public class Motherboard extends Components {
 	public String toString() {
 		return String.format("%-40s%-15s%-15s%-5d%-10s%-20s%-10d%-5d", super.getName(), this.socket_cpu,
 				this.formFactor, this.ramSlots, this.maxRam, this.color, super.getPrice(), super.getId());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Motherboard)) {
+			return false;
+		}
+		Motherboard m = (Motherboard) o;
+		return getName().equals(m.getName()) && getSocket_cpu().equals(m.getSocket_cpu())
+				&& getFormFactor().equals(m.getFormFactor()) && getRamSlots() == (m.getRamSlots())
+				&& getMaxRam().equals(m.getMaxRam()) && getColor().equals(m.getColor())
+				&& getPrice() == m.getPrice() && getId() == m.getId();
 	}
 
 }

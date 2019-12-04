@@ -51,6 +51,7 @@ public class StorageController extends Controller{
 	public static Storage searchById(int id) {
 		for (Storage storage : storageList)
 			if (storage.getId() == id) {
+				System.out.println(storage.toString());
 				return storage;
 			}
 		return null;
@@ -117,7 +118,7 @@ public class StorageController extends Controller{
 		return tableData;
 	}
 	
-	public static Storage gerRequired(int price) {
+	public static Storage getRequired(int price) {
 		ArrayList<Storage> sortedStorage = getSortedList("Price","Descending");
 		for(int rowNum=0; rowNum<sortedStorage.size(); rowNum++) {
 			if (sortedStorage.get(rowNum).getPrice()<=price) {

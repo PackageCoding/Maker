@@ -132,8 +132,24 @@ public class Storage extends Components {
 
 	@Override
 	public String toString() {
+		System.out.println(String.format("%-35s%-10s%-10s%-10s%-10s%-15s%-10d%-5d", super.getName(), this.capacity,
+				this.type, this.cache, this.formFactor, this._interface, super.getPrice(), super.getId()));
 		return String.format("%-35s%-10s%-10s%-10s%-10s%-15s%-10d%-5d", super.getName(), this.capacity, this.type,
 				this.cache, this.formFactor, this._interface, super.getPrice(), super.getId());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Storage)) {
+			return false;
+		}
+		Storage s = (Storage) o;
+		return getName().equals(s.getName()) && getCapacity().equals(s.getCapacity()) && getType().equals(s.getType())
+				&& getCache().equals(s.getCache()) && getFormFactor().equals(s.getFormFactor())
+				&& get_Interface().equals(s.get_Interface()) && getPrice() == s.getPrice() && getId() == s.getId();
 	}
 
 }

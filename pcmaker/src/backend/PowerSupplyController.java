@@ -51,6 +51,7 @@ public class PowerSupplyController extends Controller {
 	public static PowerSupply searchById(int id) {
 		for (PowerSupply powerSupply : powerSupplyList)
 			if (powerSupply.getId() == id) {
+				System.out.println(powerSupply.toString());
 				return powerSupply;
 			}
 		return null;
@@ -117,7 +118,7 @@ public class PowerSupplyController extends Controller {
 		return tableData;
 	}
 	
-	public static PowerSupply gerRequired(double power, int price) {
+	public static PowerSupply getRequired(double power, int price) {
 		ArrayList<PowerSupply> sortedPowerSupply = getSortedList("Price","Descending");
 		for(int rowNum=0; rowNum<sortedPowerSupply.size(); rowNum++) {
 			if (sortedPowerSupply.get(rowNum).getPrice()<=price && Double.parseDouble(sortedPowerSupply.get(rowNum).getWattage())>=power) {

@@ -5,7 +5,7 @@ import gui.Budget;
 public class SpecList {
 	private Budget budget;
 	private CPU cpu;
-	private Motherboard montherboard;
+	private Motherboard motherboard;
 	private Memory memory;
 	private Storage storage;
 	private VideoCard videoCard;
@@ -29,28 +29,28 @@ public class SpecList {
 		if (cpu==null) {
 			return false;
 		}else{
-			this.montherboard = MotherboardController.getRequired(budget.getCPUPreference(),this.cpu.getCoreCount(),budget.getMbPrice());
-			this.memory = MemoryController.gerRequired(budget.getRamPrice());
-			this.storage = StorageController.gerRequired(budget.getStoragePrice());
-			this.videoCard = VideoCardController.gerRequired(budget.getCardPreference(), budget.getVideoCardPrice());
+			this.motherboard = MotherboardController.getRequired(budget.getCPUPreference(),this.cpu.getCoreCount(),budget.getMbPrice());
+			this.memory = MemoryController.getRequired(budget.getRamPrice());
+			this.storage = StorageController.getRequired(budget.getStoragePrice());
+			this.videoCard = VideoCardController.getRequired(budget.getCardPreference(), budget.getVideoCardPrice());
 		}
 		
-		if (montherboard==null || memory==null || storage==null || videoCard==null) {
+		if (motherboard==null || memory==null || storage==null || videoCard==null) {
 			return false;
 		}
 		else {
 			double power = Double.parseDouble(cpu.getTdp()) + Double.parseDouble(videoCard.getTdp());
-			this.powerSupply = PowerSupplyController.gerRequired(power,budget.getPsuPrice());
+			this.powerSupply = PowerSupplyController.getRequired(power,budget.getPsuPrice());
 			if (powerSupply==null)
 				return false;
 			cpuMessage = "Cpu: " + cpu.getName() +", Price: $" + cpu.getPrice();
-			motherboardMessage = "Montherboard: " + montherboard.getName() +", Price: $" + montherboard.getPrice();
+			motherboardMessage = "Motherboard: " + motherboard.getName() +", Price: $" + motherboard.getPrice();
 			memoryMessage = "Memory: " + memory.getName() +", Price: $" + memory.getPrice();
 			storageMessage = "Storage: " + storage.getName() +", Price: $" + storage.getPrice();
 			videoCardMessage = "VideoCard: " + videoCard.getName() +", Price: $" + videoCard.getPrice();
 			powerSupplyMessage = "PowerSupply: " + powerSupply.getName() +", Price: $" + powerSupply.getPrice();
-			int totalcost = cpu.getPrice() + montherboard.getPrice() + memory.getPrice() + storage.getPrice() + videoCard.getPrice() + powerSupply.getPrice();
-			totalMessage = "Total Cost:$" + totalcost;
+			int totalcost = cpu.getPrice() + motherboard.getPrice() + memory.getPrice() + storage.getPrice() + videoCard.getPrice() + powerSupply.getPrice();
+			totalMessage = "Total Cost: $" + totalcost;
 			return true;
 		}
 	}

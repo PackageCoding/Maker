@@ -51,6 +51,7 @@ public class MotherboardController extends Controller {
 	public static Motherboard searchById(int id) {
 		for (Motherboard motherboard : motherboardList)
 			if (motherboard.getId() == id) {
+				System.out.println(motherboard.toString());
 				return motherboard;
 			}
 		return null;
