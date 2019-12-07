@@ -44,6 +44,7 @@ public class DIYTab extends JPanel implements TotalObserver{
 			public void actionPerformed(ActionEvent arg0) {
         		budget.setCPUPreference(getSelectedButtonText(cpuGroup));
         		budget.setCardPreference(getSelectedButtonText(cardGroup));
+        		budget.showTotal();
         		specList = new SpecList(budget);
         		
         		if(specList.findList()) {

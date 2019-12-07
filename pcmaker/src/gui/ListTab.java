@@ -52,7 +52,7 @@ public class ListTab extends JPanel{
 	    this.add(sortField);
 	    
 	    sortOrder = new JLabel("Ascending");
-	    sortOrder.setBounds(890,80,100,50);
+	    sortOrder.setBounds(890,80,200,50);
 	    this.add(sortOrder);
 	    
 	    this.add(new JLabel());
@@ -86,12 +86,13 @@ public class ListTab extends JPanel{
 	            		}
 	            	}
 	            	table.setVisible(true);
+	            }else if (name.equals("Id")) {
+	            	sortTitle.setText("Remainder:");
+	            	sortField.setText("Sort by Id equal");
+	            	sortOrder.setText("to Sort by Name !");
 	            }
 	        }
 	    });
 	}
-	
-	
-	
 	
 }
